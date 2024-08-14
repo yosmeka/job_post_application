@@ -51,4 +51,10 @@ class User extends Authenticatable
 {
     return $this->hasMany(Application::class);
 }
+// relationship to savedlistings
+public function savedListings()
+{
+    return $this->hasMany(SavedListing::class);
+}
+
 }

@@ -13,6 +13,12 @@
       <div class="text-lg mt-4">
         <i class="fa-solid fa-location-dot"></i> {{$listing->location}}
       </div>
+      <form method="POST" action="{{ route('saved-listings.store') }}">
+        @csrf
+        <input type="hidden" name="listing_id" value="{{ $listing->id }}">
+        <button type="submit" class="text-blue-500">Save Listing</button>
+    </form>
+    
     </div>
   </div>
 </x-card>

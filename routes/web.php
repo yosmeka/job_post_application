@@ -3,6 +3,10 @@
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\EmployerDashboardController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\SavedListingController;
+
+
 
 
 use App\Http\Controllers\UserController;
@@ -79,3 +83,11 @@ Route::middleware(['auth', 'role:employer'])->group(function () {
 
 // application route 
 Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');
+// dashbord
+Route::get('/user/dashboard', [UserDashboardController::class, 'dashboard'])->middleware('auth');
+
+Route::middleware('auth')->group(function () {
+    Route::post('/saved-listings', [SavedListingController::class, 'store'])->name('saved-listings.store');
+    Route::get('/saved-listings', [SavedListingController::class, 'index'])->name('saved-listings.index');
+    Route::delete('/saved-listings/{id}', [SavedListingController::class, 'destroy'])->name('saved-listings.destroy');
+});
