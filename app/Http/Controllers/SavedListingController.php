@@ -35,7 +35,7 @@ class SavedListingController extends Controller
     {
         $savedListings = SavedListing::where('user_id', auth()->id())->with('listing')->get();
 
-        return view('user.saved-listings', ['savedListings' => $savedListings]);
+        return view('users.saved-listings', ['savedListings' => $savedListings]);
     }
 
     public function destroy($id)
