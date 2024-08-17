@@ -6,7 +6,7 @@
          src="{{ $listing->logo ? asset('storage/' . $listing->logo) : asset('/images/no-image.png') }}" 
          alt="company_logo" />
     
-    <div class="flex-1">
+    <div class="flex-1" >
         <h3 class="text-2xl font-bold text-gray-800 mb-2">
             <a href="/listings/{{ $listing->id }}" class="hover:text-[#059669]  transition duration-200">
                 {{ $listing->title }}

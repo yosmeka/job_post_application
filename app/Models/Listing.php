@@ -21,8 +21,8 @@ class Listing extends Model
                 ->orWhere('description', 'like', '%' . request('search') . '%')
                 ->orWhere('tags', 'like', '%' . request('search') . '%'); 
         }
-
     }
+    
 
     // Relationship To User
     public function user() {

@@ -29,7 +29,7 @@ class ListingController extends Controller
 
     public function index(){
     $categories = Category::all();
-
+    
     $listings = Listing::where(function($query) {
         $query->whereNull('expiry_date')
               ->orWhere('expiry_date', '>=', now());
