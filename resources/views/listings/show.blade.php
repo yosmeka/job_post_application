@@ -29,7 +29,7 @@
               <input type="file" name="resume">
               <button type="submit">Apply</button>
           </form>
-            <a href="mailto:{{$listing->email}}"
+            <a href="{{$listing->email}}"
               class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"><i
                 class="fa-solid fa-envelope"></i>
               Contact Employer</a>
@@ -42,16 +42,6 @@
       </div>
     </x-card>
 
-    {{-- <x-card class="mt-4 p-2 flex space-x-6">
-      <a href="/listings/{{$listing->id}}/edit">
-        <i class="fa-solid fa-pencil"></i> Edit
-      </a>
-
-      <form method="POST" action="/listings/{{$listing->id}}">
-        @csrf
-        @method('DELETE')
-        <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
-      </form>
-    </x-card> --}}
+    
   </div>
 </x-layout>

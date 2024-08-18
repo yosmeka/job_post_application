@@ -90,7 +90,7 @@
                             </div>
                             <div class="ml-4">
                                 <h3 class="text-lg font-semibold text-gray-600">Upcoming Deadlines</h3>
-                                <p class="text-2xl font-bold text-gray-900">{{ $applicationsCount }}</p>
+                                <p class="text-2xl font-bold text-gray-900">{{$upcomingDeadlinesCount }}</p>
                             </div>
                         </div>
                     </div>
@@ -141,23 +141,30 @@
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">View Applications</h2>
 
                 @foreach($listings as $listing)
-                    <div class="mb-6 p-4 bg-white rounded-lg shadow-md">
-                        <h3 class="text-xl font-semibold text-gray-700 mb-4">{{ $listing->title }}</h3>
-                        <ul class="space-y-4">
-                            @forelse($listing->applications as $application)
-                                <li class="flex items-center justify-between p-4 bg-gray-100 rounded-lg">
-                                    <div>
-                                        <p class="text-gray-800 font-medium">{{ $application->user->name }}</p>
-                                        <p class="text-gray-600 text-sm">applied for this job</p>
-                                    </div>
-                                    <a href="{{ asset('storage/' . $application->resume) }}" target="_blank" class="text-blue-600 hover:underline">View Resume</a>
-                                </li>
-                            @empty
-                                <li class="p-4 text-gray-500">No applications for this job yet.</li>
-                            @endforelse
-                        </ul>
-                    </div>
-                @endforeach
+                <div class="mb-6 p-4 bg-white rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">{{ $listing->title }}</h3>
+                    <ul class="space-y-4">
+                        @forelse($listing->applications as $application)
+                            <li class="flex justify-between items-center p-4 bg-gray-100 rounded-lg">
+                                <div>
+                                    <p class="text-gray-800 font-medium">{{ $application->user->name }}</p>
+                                    <p class="text-gray-600 text-sm">applied for this job</p>
+                                </div>
+                                <div class="flex space-x-4">
+                                    <button class="bg-blue-500 text-white font-semibold py-1 px-4 rounded-full shadow-md transition duration-300 ease-in-out transform hover:bg-blue-600 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 active:scale-95 text-sm">
+                                        Save
+                                    </button>
+                                    <a href="{{ asset('storage/' . $application->resume) }}" target="_blank" class="text-blue-600 hover:underline">
+                                        View Resume
+                                    </a>
+                                </div>
+                            </li>
+                        @empty
+                            <li class="p-4 text-gray-500">No applications for this job yet.</li>
+                        @endforelse
+                    </ul>
+                </div>
+            @endforeach
             </div>
         </div>
     </div>

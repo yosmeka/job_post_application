@@ -35,9 +35,9 @@ class EmployerDashboardController extends Controller
                                 ->count();
 
     // Count of upcoming deadlines (if needed)
-    // $upcomingDeadlinesCount = Listing::where('user_id', $user->id)
-    //                                  ->whereDate('expiry_date', '>=', now())
-    //                                  ->count();
+    $upcomingDeadlinesCount = Listing::where('user_id', $user->id)
+                                     ->whereDate('expiry_date', '>=', now())
+                                     ->count();
 
     // Pass the counts to the view
 
@@ -46,7 +46,7 @@ class EmployerDashboardController extends Controller
         'activeListingsCount' => $activeListingsCount,
         'applicationsCount' => $applicationsCount,
         // 'applications' => $applications,
-        // 'upcomingDeadlinesCount' => $upcomingDeadlinesCount,
+        'upcomingDeadlinesCount' => $upcomingDeadlinesCount,
         'listings' =>$listings,
         'applications' => $applications,
 

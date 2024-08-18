@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Storage;
 
 
 use App\Models\Listing;
-use App\Models\Category;
+use App\Models\Category; 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -29,7 +29,7 @@ class ListingController extends Controller
 
     public function index(){
     $categories = Category::all();
-    
+
     $listings = Listing::where(function($query) {
         $query->whereNull('expiry_date')
               ->orWhere('expiry_date', '>=', now());
