@@ -8,8 +8,8 @@
             <ul class="space-y-4">
                 @foreach ($savedListings as $savedListing)
                     <li class="flex justify-between items-center bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <a href="{{ route('listings.show', $savedListing->listing->id) }}" 
-                           class="text-lg font-semibold text-green-600 hover:text-green-700 transition duration-200">
+                        {{-- <a href="{{ route('listings.show', $savedListing->listing->id) }}" 
+                           class="text-lg font-semibold text-green-600 hover:text-green-700 transition duration-200"> --}}
                             {{ $savedListing->listing->title }}
                         </a>
                         <form method="POST" action="{{ route('saved-listings.destroy', $savedListing->id) }}">

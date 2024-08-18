@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\ListingController;
-use App\Http\Controllers\EmployerDashboardController;
-use App\Http\Controllers\ApplicationController;
-use App\Http\Controllers\UserDashboardController;
-use App\Http\Controllers\SavedListingController;
-
-
-
-
-use App\Http\Controllers\UserController;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Listing;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListingController;
+
+
+
+
+use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\SavedListingController;
+use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\SavedApplicantController;
+use App\Http\Controllers\EmployerDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,10 +80,17 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 // mine
 Route::middleware(['auth', 'role:employer'])->group(function () {
     Route::get('/employer-dashboard', [EmployerDashboardController::class, 'dashboard'])->name('employer.dashboard');
+    Route::post('/employer/save-applicant', [SavedApplicantController::class, 'store'])->name('employer.save-applicant');
+    Route::get('/employer/saved-applicants', [SavedApplicantController::class, 'index'])->name('employer.saved-applicants');
+    Route::delete('/employer/saved-applicants/{id}', [SavedApplicantController::class, 'destroy'])->name('employer.delete-saved-applicant');
+    
+
+
 });
 
 // application route 
 Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');
+
 // dashbord
 Route::get('/user/dashboard', [UserDashboardController::class, 'dashboard'])->middleware('auth');
 

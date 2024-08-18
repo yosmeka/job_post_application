@@ -26,9 +26,11 @@
                     <i class="fas fa-upload mr-3"></i>
                     Submit Jobs
                 </a>
-                <a href="/saved-candidates" data-link class="flex items-center p-2 hover:bg-gray-700 rounded transition">
+                <a href="{{ route('employer.saved-applicants') }}" data-link class="flex items-center p-2 hover:bg-gray-700 rounded transition">
+                
                     <i class="fas fa-user-check mr-3"></i>
-                    Saved Candidates
+                  Save Candidates
+
                 </a>
                 <a href="/membership" data-link class="flex items-center p-2 hover:bg-gray-700 rounded transition">
                     <i class="fas fa-id-card-alt mr-3"></i>
@@ -151,9 +153,12 @@
                                     <p class="text-gray-600 text-sm">applied for this job</p>
                                 </div>
                                 <div class="flex space-x-4">
-                                    <button class="bg-blue-500 text-white font-semibold py-1 px-4 rounded-full shadow-md transition duration-300 ease-in-out transform hover:bg-blue-600 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 active:scale-95 text-sm">
-                                        Save
-                                    </button>
+                                    <form action="{{ route('employer.save-applicant') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="application_id" value="{{ $application->id }}">
+                                        <button type="submit">Save</button>
+                                    </form>
+                                    
                                     <a href="{{ asset('storage/' . $application->resume) }}" target="_blank" class="text-blue-600 hover:underline">
                                         View Resume
                                     </a>

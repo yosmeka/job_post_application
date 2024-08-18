@@ -23,6 +23,7 @@ class UserDashboardController extends Controller
         return view('users.dashboard', [
             'applications' => $applications,
             'savedListings' => $savedListings,
+            
             // Add any other necessary data
         ]);
     }

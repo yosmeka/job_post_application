@@ -14,14 +14,16 @@ class ApplicationController extends Controller
             'listing_id' => 'required|exists:listings,id',
             'cover_letter' => 'nullable|string',
             'resume' => 'nullable|file|mimes:pdf,doc,docx',
+            
         ]);
     
         $application = new Application();
         $application->user_id = auth()->id();
         $application->listing_id = $request->listing_id;
         $application->cover_letter = $request->cover_letter;
-    
-        if ($request->hasFile('resume')) {
+
+      
+         if ($request->hasFile('resume')) {
             $application->resume = $request->file('resume')->store('resumes', 'public');
         }
     
@@ -29,4 +31,5 @@ class ApplicationController extends Controller
     
         return redirect()->back()->with('message', 'Application submitted successfully!');
     }
+   
     }

@@ -6,6 +6,7 @@ use App\Models\Application;
 
 
 use Illuminate\Http\Request;
+use App\Models\SavedCandidate;
 
 class EmployerDashboardController extends Controller
 {
@@ -54,9 +55,33 @@ class EmployerDashboardController extends Controller
     ]);
 }
 
-    // public function index()
-    // {
-    //     // Add any logic needed for the employer dashboard
-    //     return view('employer.dashboard',['listings' => auth()->user()->listings()->get()]);
-    // }
+   // saved candidates
+    public function saveCandidate(Request $request)
+    {
+        $request->validate([
+            'application_id' => 'required|exists:applications,id',
+        ]);
+
+        $existingSavedCandidate = SavedCandidate::where('employer_id', auth()->id())
+                                                ->where('application_id', $request->application_id)
+                                                ->first();
+
+        if ($existingSavedCandidate) {
+            return redirect()->back()->with('message', 'This candidate is already saved.');
+        }
+
+        SavedCandidate::create([
+            'employer_id' => auth()->id(),
+            'application_id' => $request->application_id,
+        ]);
+
+        return redirect()->back()->with('message', 'Candidate saved successfully!');
+    }
+
+    public function viewSavedCandidates()
+    {
+        $savedCandidates = SavedCandidate::where('employer_id', auth()->id())->with('application.user')->get();
+
+        return view('employer.saved-candidates', compact('savedCandidates'));
+    }
 }
