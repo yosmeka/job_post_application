@@ -26,9 +26,18 @@ return new class extends Migration
             $table->string('location');
             $table->string('email');
             $table->string('website');
+            $table->string('job_type'); // Added
+            $table->string('salary_type'); // Added
+            $table->decimal('min_salary', 10, 2)->nullable(); // Added
+            $table->decimal('max_salary', 10, 2)->nullable(); // Added
+            $table->string('experience'); // Added
+            $table->string('city'); // Added
+            $table->string('state'); // Added
+            $table->string('country'); // Added
             $table->longText('description');
             $table->timestamps(); // Created at and Updated at columns
         });
+        
     }
 
     /**
